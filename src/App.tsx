@@ -83,6 +83,8 @@ function App() {
       <div className="wheel-container">
         <svg width={size} height={size} className={spinning ? 'spinning' : ''} style={{ transition: 'transform 3.5s cubic-bezier(.17,.67,.83,.67)', transform: selected !== null ? `rotate(${(360 * 5) + (360 - selected * segAngle - segAngle / 2)}deg)` : 'none' }}>
           <g transform={`translate(${center},${center})`}>
+            {/* Add a dark background circle for contrast */}
+            <circle cx={0} cy={0} r={radius + 8} fill="#181818" stroke="#fff" strokeWidth={4} />
             {wheel.map((seg, i) => {
               const startAngle = i * segAngle
               const endAngle = (i + 1) * segAngle

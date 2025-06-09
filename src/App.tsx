@@ -59,7 +59,9 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      const seg = wheel[target]
+      // Use the selected index to get the correct segment after the wheel stops
+      const segIndex = target
+      const seg = wheel[segIndex]
       setResult(seg.value && seg.label ? `You won $${seg.value}!` : 'No prize, try again!')
     }, 3500)
   }

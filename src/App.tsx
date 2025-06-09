@@ -87,7 +87,19 @@ function App() {
     <div className="neon-bg">
       <h1 className="neon-title">Neon Gambling Wheel</h1>
       <div className="wheel-container">
-        <svg width={size} height={size} className={spinning ? 'spinning' : ''} style={{ transition: 'transform 3.5s cubic-bezier(.17,.67,.83,.67)', transform: selected !== null ? `rotate(${(360 * 5) + (360 - selected * segAngle - segAngle / 2)}deg)` : 'none' }}>
+        <svg
+          width={size}
+          height={size}
+          className={spinning ? 'spinning' : ''}
+          style={{
+            transition: 'transform 3.5s cubic-bezier(.17,.67,.83,.67)',
+            // Rotate the wheel so index 0 starts at 12 o'clock, then apply the spin
+            transform:
+              selected !== null
+                ? `rotate(${-90 + (360 * 5) + (360 - selected * segAngle - segAngle / 2)}deg)`
+                : 'rotate(-90deg)'
+          }}
+        >
           <g transform={`translate(${center},${center})`}>
             {/* Add a dark background circle for contrast */}
             <circle cx={0} cy={0} r={radius + 8} fill="#181818" stroke="#fff" strokeWidth={4} />

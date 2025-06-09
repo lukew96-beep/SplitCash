@@ -63,7 +63,7 @@ function App() {
       const seg = wheel[selected!]
       const value = Number(seg.label.replace('$', ''))
       if (seg && seg.label && seg.label.startsWith('$') && !isNaN(value) && value > 0) {
-        setResult(`You won $${seg.label}!`)
+        setResult(`You won $${value}!`)
       } else {
         setResult('No prize, try again!')
       }

@@ -59,8 +59,10 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      const seg = wheel[target]
-      // Only show a win if seg.value is a number, seg.label is not empty, and seg.value > 0
+      // The pointer is always at the top, so the winning segment is:
+      // (wheel.length - target) % wheel.length
+      const segIndex = (wheel.length - target) % wheel.length
+      const seg = wheel[segIndex]
       if (typeof seg.value === 'number' && seg.label !== '' && seg.value > 0) {
         setResult(`You won $${seg.value}!`)
       } else {

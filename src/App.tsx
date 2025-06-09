@@ -61,8 +61,9 @@ function App() {
       setSpinning(false)
       // Calculate the actual segment index after the wheel visually rotates
       // The pointer is always at the top (0 degrees), so the selected segment is:
-      // (wheel.length - target) % wheel.length
-      const segIndex = (wheel.length - target) % wheel.length
+      // (target + 1) % wheel.length
+      // This matches the visual rotation math in the SVG
+      const segIndex = (target + 1) % wheel.length
       const seg = wheel[segIndex]
       setResult(seg.value !== null && seg.label !== '' ? `You won $${seg.value}!` : 'No prize, try again!')
     }, 3500)

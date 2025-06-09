@@ -5,7 +5,7 @@ import './App.css'
 type Segment = {
   label: string
   value: number | null // null for blank
-  color: string
+  color: string // add color property to type
 }
 
 // Helper to generate random neon color
@@ -60,7 +60,7 @@ function App() {
     setTimeout(() => {
       setSpinning(false)
       const seg = getWinningSegment()
-      // Show a win if the segment has a non-empty label (e.g. "$365") regardless of value
+      // Show a win if the segment label starts with '$' (prize), regardless of value
       if (seg && seg.label && seg.label.startsWith('$')) {
         setResult(`You won ${seg.label}!`)
       } else {

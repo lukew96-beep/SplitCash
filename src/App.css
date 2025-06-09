@@ -1,0 +1,127 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.neon-bg {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, #232526 0%, #0f2027 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2rem;
+}
+
+.neon-title {
+  color: #39ff14;
+  font-size: 3rem;
+  text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.wheel-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-bottom: 2rem;
+}
+
+.spinning {
+  will-change: transform;
+}
+
+.pointer {
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: #fff700;
+  text-shadow: 0 0 10px #fff700, 0 0 20px #fff700;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.controls {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.neon-btn {
+  background: #1a1a1a;
+  color: #fff;
+  border: 2px solid #39ff14;
+  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14 inset;
+  text-shadow: 0 0 5px #39ff14;
+  font-size: 1.2rem;
+  padding: 0.7em 2em;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.neon-btn:hover:not(:disabled) {
+  border-color: #fff700;
+  box-shadow: 0 0 20px #fff700, 0 0 40px #fff700 inset;
+  color: #fff700;
+}
+
+.neon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.neon-text {
+  text-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 20px #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.result {
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+}

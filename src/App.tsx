@@ -59,10 +59,9 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      // Use the selected index for pointer, but use the debug panel to show both selected and target
-      // The segment under the pointer is always the selected index
+      // Use the selected index for pointer, and check the label for a $ prefix and non-empty value
       const seg = wheel[selected!]
-      if (seg && seg.label && seg.label.startsWith('$')) {
+      if (seg && seg.label && seg.label.trim().startsWith('$') && seg.label.trim().length > 1) {
         setResult(`You won ${seg.label}!`)
       } else {
         setResult('No prize, try again!')

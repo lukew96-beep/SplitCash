@@ -59,8 +59,8 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      const seg = getWinningSegment()
-      // Show a win if the segment label starts with '$' (prize), regardless of value
+      if (selected === null) return;
+      const seg = wheel[selected];
       if (seg && seg.label && seg.label.startsWith('$')) {
         setResult(`You won ${seg.label}!`)
       } else {

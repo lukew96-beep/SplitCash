@@ -60,8 +60,9 @@ function App() {
     setTimeout(() => {
       setSpinning(false)
       const seg = getWinningSegment()
-      if (seg && typeof seg.value === 'number' && seg.label !== '' && seg.value > 0) {
-        setResult(`You won $${seg.value}!`)
+      // Show a win if the segment has a non-empty label (e.g. "$365") regardless of value
+      if (seg && seg.label && seg.label.startsWith('$')) {
+        setResult(`You won ${seg.label}!`)
       } else {
         setResult('No prize, try again!')
       }

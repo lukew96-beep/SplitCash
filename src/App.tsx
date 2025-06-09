@@ -60,7 +60,7 @@ function App() {
     setTimeout(() => {
       setSpinning(false)
       const seg = wheel[target]
-      setResult(seg.value ? `You won $${seg.value}!` : 'No prize, try again!')
+      setResult(seg.value !== null ? `You won $${seg.value}!` : 'No prize, try again!')
     }, 3500)
   }
 

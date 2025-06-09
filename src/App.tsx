@@ -59,7 +59,9 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      const seg = wheel[target]
+      // Use the selected index for pointer, but use the debug panel to show both selected and target
+      // The segment under the pointer is always the selected index
+      const seg = wheel[selected!]
       if (seg && seg.label && seg.label.startsWith('$')) {
         setResult(`You won ${seg.label}!`)
       } else {
@@ -80,13 +82,6 @@ function App() {
   const center = size / 2
   const radius = 170
   const segAngle = 360 / wheel.length
-
-  // Helper to get the segment under the pointer after spin
-  const getWinningSegment = () => {
-    if (selected === null) return null
-    // The segment under the pointer is exactly the selected index
-    return wheel[selected]
-  }
 
   return (
     <div className="neon-bg">
@@ -148,8 +143,9 @@ function App() {
       {result && <div className="result neon-text">{result}</div>}
       {selected !== null && (
         <div style={{color: '#fff', marginTop: 8, fontSize: '0.9em'}}>
-          <b>DEBUG:</b> Selected index: {selected}, Winning index: {selected},<br />
-          Winning label: {getWinningSegment()?.label}, Winning value: {getWinningSegment()?.value}
+          <b>DEBUG:</b> Selected index: {selected},<br />
+          Segment labels: {wheel.map(s => s.label || '[blank]').join(', ')}<br />
+          Winning label: {wheel[selected]?.label}, Winning value: {wheel[selected]?.value}
         </div>
       )}
     </div>

@@ -59,9 +59,10 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      // Use the selected index for pointer, and check the label for a $ prefix and non-empty value
+      // Use the selected index for pointer, and check the label for a $ prefix and that value is a number > 0
       const seg = wheel[selected!]
-      if (seg && seg.label && seg.label.trim().startsWith('$') && seg.label.trim().length > 1) {
+      const value = Number(seg.label.replace('$', ''))
+      if (seg && seg.label && seg.label.startsWith('$') && !isNaN(value) && value > 0) {
         setResult(`You won ${seg.label}!`)
       } else {
         setResult('No prize, try again!')

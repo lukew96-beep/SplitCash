@@ -60,9 +60,8 @@ function App() {
     setTimeout(() => {
       setSpinning(false)
       // The pointer is always at the top, so the selected segment is:
-      // (wheel.length - target - 1 + wheel.length) % wheel.length
-      // This matches the visual rotation math in the SVG
-      const segIndex = (wheel.length - target - 1 + wheel.length) % wheel.length
+      // (target) % wheel.length
+      const segIndex = target
       const seg = wheel[segIndex]
       setResult(seg.value !== null && seg.label !== '' ? `You won $${seg.value}!` : 'No prize, try again!')
     }, 3500)

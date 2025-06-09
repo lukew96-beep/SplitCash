@@ -59,8 +59,7 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      if (selected === null) return;
-      const seg = wheel[selected];
+      const seg = wheel[target]
       if (seg && seg.label && seg.label.startsWith('$')) {
         setResult(`You won ${seg.label}!`)
       } else {

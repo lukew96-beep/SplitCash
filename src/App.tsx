@@ -82,6 +82,16 @@ function App() {
   const radius = 170
   const segAngle = 360 / wheel.length
 
+  // Helper to get the segment under the pointer after spin
+  const getWinningSegment = () => {
+    if (selected === null) return null
+    // The pointer is always at the top (0 degrees)
+    // The wheel rotates so that the selected segment's center aligns with the pointer
+    // The correct index is (wheel.length - selected) % wheel.length
+    const segIndex = (wheel.length - selected) % wheel.length
+    return wheel[segIndex]
+  }
+
   return (
     <div className="neon-bg">
       <h1 className="neon-title">Neon Gambling Wheel</h1>
@@ -140,6 +150,13 @@ function App() {
         <button className="neon-btn" onClick={reset} disabled={spinning}>Reset</button>
       </div>
       {result && <div className="result neon-text">{result}</div>}
+      {/* Debug info for troubleshooting */}
+      {selected !== null && (
+        <div style={{color: '#fff', marginTop: 8, fontSize: '0.9em'}}>
+          <b>DEBUG:</b> Selected index: {selected}, Winning index: {(wheel.length - selected) % wheel.length},<br />
+          Winning label: {getWinningSegment()?.label}, Winning value: {getWinningSegment()?.value}
+        </div>
+      )}
     </div>
   )
 }

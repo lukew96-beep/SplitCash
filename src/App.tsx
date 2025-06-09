@@ -63,10 +63,12 @@ function App() {
       const seg = wheel[selected!]
       const value = Number(seg.label.replace('$', ''))
       if (seg && seg.label && seg.label.startsWith('$') && !isNaN(value) && value > 0) {
-        setResult(`You won ${seg.label}!`)
+        setResult(`You won $${seg.label}!`)
       } else {
         setResult('No prize, try again!')
       }
+      // Debug: log the selected index, label, and value
+      console.log('DEBUG:', {selected, label: seg.label, value, wheel: wheel.map(s => s.label)})
     }, 3500)
   }
 

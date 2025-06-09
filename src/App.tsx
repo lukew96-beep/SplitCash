@@ -60,8 +60,8 @@ function App() {
     setTimeout(() => {
       setSpinning(false)
       const seg = wheel[target]
-      // Only show a win if seg.value is a number AND seg.label is not empty
-      if (typeof seg.value === 'number' && seg.label !== '') {
+      // Only show a win if seg.value is a number, seg.label is not empty, and seg.value > 0
+      if (typeof seg.value === 'number' && seg.label !== '' && seg.value > 0) {
         setResult(`You won $${seg.value}!`)
       } else {
         setResult('No prize, try again!')

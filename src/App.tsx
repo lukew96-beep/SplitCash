@@ -64,7 +64,7 @@ function App() {
       // (wheel.length - target) % wheel.length
       const segIndex = (wheel.length - target) % wheel.length
       const seg = wheel[segIndex]
-      setResult(seg.value && seg.label ? `You won $${seg.value}!` : 'No prize, try again!')
+      setResult(seg.value !== null && seg.label !== '' ? `You won $${seg.value}!` : 'No prize, try again!')
     }, 3500)
   }
 

@@ -60,8 +60,13 @@ function App() {
     setTimeout(() => {
       setSpinning(false)
       // The pointer is always at the top, so the winning segment is:
-      // (wheel.length - target) % wheel.length
-      const segIndex = (wheel.length - target) % wheel.length
+      // (target + Math.floor(wheel.length / 4)) % wheel.length
+      // This matches the visual rotation math in the SVG, where the pointer is at 12 o'clock
+      const segAngle = 360 / wheel.length
+      const pointerAngle = 270 // 12 o'clock in SVG
+      const landedAngle = (360 - (target * segAngle) - segAngle / 2) % 360
+      const indexFromPointer = Math.round(((pointerAngle - landedAngle + 360) % 360) / segAngle) % wheel.length
+      const segIndex = (indexFromPointer + wheel.length) % wheel.length
       const seg = wheel[segIndex]
       if (typeof seg.value === 'number' && seg.label !== '' && seg.value > 0) {
         setResult(`You won $${seg.value}!`)

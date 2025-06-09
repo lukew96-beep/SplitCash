@@ -84,9 +84,9 @@ function App() {
   // Helper to get the segment under the pointer after spin
   const getWinningSegment = () => {
     if (selected === null) return null
-    // FINAL: The SVG rotates so the selected segment's center aligns with the pointer (12 o'clock)
-    // The correct index is simply selected
-    return wheel[selected]
+    // The actual segment under the pointer is (selected + wheel.length - 1) % wheel.length
+    const segIndex = (selected + wheel.length - 1) % wheel.length
+    return wheel[segIndex]
   }
 
   return (
@@ -149,7 +149,8 @@ function App() {
       {result && <div className="result neon-text">{result}</div>}
       {selected !== null && (
         <div style={{color: '#fff', marginTop: 8, fontSize: '0.9em'}}>
-          <b>DEBUG:</b> Selected index: {selected}, Winning label: {getWinningSegment()?.label}, Winning value: {getWinningSegment()?.value}
+          <b>DEBUG:</b> Selected index: {selected}, Winning index: {(selected + wheel.length - 1) % wheel.length},<br />
+          Winning label: {getWinningSegment()?.label}, Winning value: {getWinningSegment()?.value}
         </div>
       )}
     </div>

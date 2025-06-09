@@ -59,8 +59,10 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      // Use the selected index to get the correct segment after the wheel stops
-      const segIndex = target
+      // Calculate the actual segment index after the wheel visually rotates
+      // The pointer is always at the top (0 degrees), so the selected segment is:
+      // (wheel.length - target) % wheel.length
+      const segIndex = (wheel.length - target) % wheel.length
       const seg = wheel[segIndex]
       setResult(seg.value && seg.label ? `You won $${seg.value}!` : 'No prize, try again!')
     }, 3500)

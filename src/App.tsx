@@ -84,9 +84,8 @@ function App() {
   // Helper to get the segment under the pointer after spin
   const getWinningSegment = () => {
     if (selected === null) return null
-    // The actual segment under the pointer is (selected + wheel.length - 1) % wheel.length
-    const segIndex = (selected + wheel.length - 1) % wheel.length
-    return wheel[segIndex]
+    // The segment under the pointer is exactly the selected index
+    return wheel[selected]
   }
 
   return (
@@ -149,7 +148,7 @@ function App() {
       {result && <div className="result neon-text">{result}</div>}
       {selected !== null && (
         <div style={{color: '#fff', marginTop: 8, fontSize: '0.9em'}}>
-          <b>DEBUG:</b> Selected index: {selected}, Winning index: {(selected + wheel.length - 1) % wheel.length},<br />
+          <b>DEBUG:</b> Selected index: {selected}, Winning index: {selected},<br />
           Winning label: {getWinningSegment()?.label}, Winning value: {getWinningSegment()?.value}
         </div>
       )}

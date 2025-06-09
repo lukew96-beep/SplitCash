@@ -59,16 +59,8 @@ function App() {
     setSelected(target)
     setTimeout(() => {
       setSpinning(false)
-      // The pointer is always at the top, so the winning segment is:
-      // (target + Math.floor(wheel.length / 4)) % wheel.length
-      // This matches the visual rotation math in the SVG, where the pointer is at 12 o'clock
-      const segAngle = 360 / wheel.length
-      const pointerAngle = 270 // 12 o'clock in SVG
-      const landedAngle = (360 - (target * segAngle) - segAngle / 2) % 360
-      const indexFromPointer = Math.round(((pointerAngle - landedAngle + 360) % 360) / segAngle) % wheel.length
-      const segIndex = (indexFromPointer + wheel.length) % wheel.length
-      const seg = wheel[segIndex]
-      if (typeof seg.value === 'number' && seg.label !== '' && seg.value > 0) {
+      const seg = getWinningSegment()
+      if (seg && typeof seg.value === 'number' && seg.label !== '' && seg.value > 0) {
         setResult(`You won $${seg.value}!`)
       } else {
         setResult('No prize, try again!')
@@ -92,9 +84,6 @@ function App() {
   // Helper to get the segment under the pointer after spin
   const getWinningSegment = () => {
     if (selected === null) return null
-    // The pointer is always at the top (0 degrees)
-    // The wheel rotates so that the selected segment's center aligns with the pointer
-    // The correct index is (wheel.length - selected) % wheel.length
     const segIndex = (wheel.length - selected) % wheel.length
     return wheel[segIndex]
   }
@@ -157,7 +146,6 @@ function App() {
         <button className="neon-btn" onClick={reset} disabled={spinning}>Reset</button>
       </div>
       {result && <div className="result neon-text">{result}</div>}
-      {/* Debug info for troubleshooting */}
       {selected !== null && (
         <div style={{color: '#fff', marginTop: 8, fontSize: '0.9em'}}>
           <b>DEBUG:</b> Selected index: {selected}, Winning index: {(wheel.length - selected) % wheel.length},<br />
